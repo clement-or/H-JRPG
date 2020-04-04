@@ -1,0 +1,261 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://nodes/ui/panel.png" type="Texture" id=1]
+[ext_resource path="res://resources/backgrounds/proto.jpg" type="Texture" id=2]
+[ext_resource path="res://resources/sprites/proto-enemy.png" type="Texture" id=3]
+[ext_resource path="res://nodes/player/ProtoSkeleton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/proto_theme.tres" type="Theme" id=5]
+[ext_resource path="res://scripts/AttackMenu.gd" type="Script" id=6]
+[ext_resource path="res://scripts/FightManager.gd" type="Script" id=7]
+[ext_resource path="res://resources/sprites/arrow.png" type="Texture" id=8]
+[ext_resource path="res://scripts/FightMenu.gd" type="Script" id=9]
+
+[sub_resource type="Animation" id=1]
+resource_name = "selected"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -200 ), Vector2( 0, 0 ) ]
+}
+
+[node name="Fight" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 960, 360.626 )
+scale = Vector2( 1.13951, 1.13951 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Allies" type="Node" parent="."]
+
+[node name="ProtoPlayer" parent="Allies" instance=ExtResource( 4 )]
+position = Vector2( 428.121, 477.459 )
+scale = Vector2( 2, 2 )
+
+[node name="LifeBar" type="ProgressBar" parent="Allies/ProtoPlayer"]
+margin_left = -50.2632
+margin_top = -102.0
+margin_right = 61.7368
+margin_bottom = -95.0
+theme = ExtResource( 5 )
+step = 1.0
+value = 80.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="ProtoEnemy" type="Sprite" parent="Enemies"]
+position = Vector2( 1477.14, 439.522 )
+scale = Vector2( 1.22996, 1.22996 )
+texture = ExtResource( 3 )
+
+[node name="LifeBar2" type="ProgressBar" parent="Enemies/ProtoEnemy"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -355.0
+margin_top = -540.326
+margin_right = -157.0
+margin_bottom = -526.326
+theme = ExtResource( 5 )
+step = 1.0
+value = 80.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Arrow" type="Sprite" parent="UI"]
+modulate = Color( 1, 0.592157, 0.984314, 1 )
+position = Vector2( 450, 720 )
+rotation = 3.14159
+scale = Vector2( 0.1, 0.1 )
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 8 )
+
+[node name="Anim" type="AnimationPlayer" parent="UI/Arrow"]
+autoplay = "selected"
+anims/selected = SubResource( 1 )
+
+[node name="Menu" type="NinePatchRect" parent="UI"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -331.0
+texture = ExtResource( 1 )
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FightMenu" type="HBoxContainer" parent="UI/Menu"]
+anchor_bottom = 1.0
+margin_left = 37.0
+margin_top = 25.0
+margin_right = 800.0
+margin_bottom = -25.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Actions" type="VBoxContainer" parent="UI/Menu/FightMenu"]
+margin_right = 165.0
+margin_bottom = 281.0
+
+[node name="AttackContainer" type="MarginContainer" parent="UI/Menu/FightMenu/Actions"]
+margin_right = 165.0
+margin_bottom = 91.0
+size_flags_vertical = 3
+
+[node name="Attack" type="Button" parent="UI/Menu/FightMenu/Actions/AttackContainer"]
+margin_top = 16.0
+margin_right = 165.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 4
+theme = ExtResource( 5 )
+text = "Attack"
+
+[node name="ObjectsContainer" type="MarginContainer" parent="UI/Menu/FightMenu/Actions"]
+margin_top = 95.0
+margin_right = 165.0
+margin_bottom = 186.0
+size_flags_vertical = 3
+
+[node name="Objects" type="Button" parent="UI/Menu/FightMenu/Actions/ObjectsContainer"]
+margin_top = 16.0
+margin_right = 165.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 4
+theme = ExtResource( 5 )
+text = "Objects"
+
+[node name="FleeContainer" type="MarginContainer" parent="UI/Menu/FightMenu/Actions"]
+margin_top = 190.0
+margin_right = 165.0
+margin_bottom = 281.0
+size_flags_vertical = 3
+
+[node name="Flee" type="Button" parent="UI/Menu/FightMenu/Actions/FleeContainer"]
+margin_top = 16.0
+margin_right = 165.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 4
+theme = ExtResource( 5 )
+text = "Flee"
+
+[node name="Spacer" type="Control" parent="UI/Menu/FightMenu"]
+margin_left = 169.0
+margin_right = 219.0
+margin_bottom = 281.0
+rect_min_size = Vector2( 50, 0 )
+
+[node name="AttackMenu" type="VBoxContainer" parent="UI/Menu/FightMenu"]
+visible = false
+margin_left = 223.0
+margin_top = 18.0
+margin_right = 423.0
+margin_bottom = 262.0
+size_flags_vertical = 4
+script = ExtResource( 6 )
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Menu/FightMenu/AttackMenu"]
+margin_right = 200.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 200, 0 )
+
+[node name="Button" type="Button" parent="UI/Menu/FightMenu/AttackMenu/MarginContainer"]
+margin_right = 200.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 4
+theme = ExtResource( 5 )
+text = "Attack 1"
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/Menu/FightMenu/AttackMenu"]
+margin_top = 62.0
+margin_right = 200.0
+margin_bottom = 120.0
+
+[node name="Button" type="Button" parent="UI/Menu/FightMenu/AttackMenu/MarginContainer2"]
+margin_right = 200.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 4
+theme = ExtResource( 5 )
+text = "Attack 2"
+
+[node name="MarginContainer3" type="MarginContainer" parent="UI/Menu/FightMenu/AttackMenu"]
+margin_top = 124.0
+margin_right = 200.0
+margin_bottom = 182.0
+
+[node name="Button" type="Button" parent="UI/Menu/FightMenu/AttackMenu/MarginContainer3"]
+margin_right = 200.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 4
+theme = ExtResource( 5 )
+text = "Attack 3"
+
+[node name="MarginContainer4" type="MarginContainer" parent="UI/Menu/FightMenu/AttackMenu"]
+margin_top = 186.0
+margin_right = 200.0
+margin_bottom = 244.0
+
+[node name="Button" type="Button" parent="UI/Menu/FightMenu/AttackMenu/MarginContainer4"]
+margin_right = 200.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 4
+theme = ExtResource( 5 )
+text = "Attack 4"
+
+[node name="CharaStats" type="Panel" parent="UI/Menu"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -593.0
+margin_top = 29.0
+margin_right = -23.0
+margin_bottom = -29.0
+
+[node name="Label" type="Label" parent="UI/Menu/CharaStats"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -216.0
+margin_top = -75.5
+margin_right = 217.0
+margin_bottom = 75.5
+theme = ExtResource( 5 )
+text = "CHARACTER STATS"
+align = 1
+valign = 1
+[connection signal="pressed" from="UI/Menu/FightMenu/Actions/AttackContainer/Attack" to="UI/Menu/FightMenu/AttackMenu" method="_on_Attack_pressed"]
