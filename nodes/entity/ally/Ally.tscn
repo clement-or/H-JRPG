@@ -461,16 +461,12 @@ script = ExtResource( 13 )
 display_name = "Blowjob"
 attacker = NodePath("../..")
 
-[node name="ArousalBar" parent="." index="4"]
-margin_left = -83.0
-margin_top = -126.0
-margin_right = 83.0
-margin_bottom = -115.0
+[node name="ArousalBar" parent="EntityUI" index="0"]
+margin_left = -67.0
+margin_top = -106.21
+margin_right = 68.0
+margin_bottom = -94.2099
 max_value = 15.0
 value = 10.0
-entity = Object(Node2D,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"visible":true,"modulate":Color( 1, 1, 1, 1 ),"self_modulate":Color( 1, 1, 1, 1 ),"show_behind_parent":false,"light_mask":1,"material":null,"use_parent_material":false,"position":Vector2( 0, 0 ),"rotation":0.0,"scale":Vector2( 1, 1 ),"z_index":0,"z_as_relative":true,"script":Resource( "res://nodes/entity/Entity.gd" ),"max_ap":15,"cur_ap":10,"max_pp":0,"cur_pp":0,"genitals":0,"gender":0,"display_name":"Sexy Girl n°732","entity_ui":NodePath("ArousalBar"))
+entity = Object(Node2D,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"visible":true,"modulate":Color( 1, 1, 1, 1 ),"self_modulate":Color( 1, 1, 1, 1 ),"show_behind_parent":false,"light_mask":1,"material":null,"use_parent_material":false,"position":Vector2( 0, 0 ),"rotation":0.0,"scale":Vector2( 1, 1 ),"z_index":0,"z_as_relative":true,"script":Resource( "res://nodes/entity/Entity.gd" ),"max_ap":15,"cur_ap":10,"max_pp":0,"cur_pp":0,"genitals":0,"gender":0,"display_name":"Sexy Girl n°732","entity_ui":NodePath("EntityUI/ArousalBar"))
 
-
-[node name="APLoseLabel" parent="ArousalBar" index="2"]
-visible = false
-margin_top = -60.0

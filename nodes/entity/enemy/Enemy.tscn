@@ -8,13 +8,15 @@ max_ap = 100
 cur_ap = 100
 display_name = "Bad Wolf"
 
-[node name="ArousalBar" parent="." index="2"]
-margin_left = -201.0
-margin_top = -310.0
-margin_right = 202.0
-margin_bottom = -294.0
+[node name="ArousalBar" parent="EntityUI" index="0"]
+margin_left = -199.0
+margin_top = -279.86
+margin_right = 198.0
+margin_bottom = -266.86
+min_value = 1.0
 max_value = 100.0
 value = 100.0
+entity = NodePath("../..")
 
 [node name="Sprite" type="Sprite" parent="." index="3"]
 texture = ExtResource( 2 )

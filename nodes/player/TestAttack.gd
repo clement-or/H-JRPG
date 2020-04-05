@@ -8,4 +8,4 @@ func attack():
 	if scene:
 		var targets = $"/root/Fight/Enemies".get_children()
 		for t in targets:
-			t.set_cur_ap(10, true)
+			t.set_cur_ap(t.cur_ap - 10, true)

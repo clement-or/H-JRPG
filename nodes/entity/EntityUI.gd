@@ -1,7 +1,6 @@
 tool
 extends ProgressBar
 
-
 export(NodePath) var entity
 
 """ MAIN METHODS """
@@ -11,6 +10,7 @@ func _ready():
 		entity = get_node(entity)
 
 func _process(delta):
+	
 	if Engine.editor_hint:
 		editor_process(delta)
 		return
@@ -20,14 +20,22 @@ func _process(delta):
 
 func editor_process(delta):
 	var e
+	# Resolve entity if it's still a NodePath
 	if typeof(entity) == TYPE_NODE_PATH:
+		if entity == "": return
 		e = get_node(entity)
 	else:
 		e = entity
 		
-	if max_value != min_value:
+	if e == null: return
+	
+	# Display entity's AP in ProgressBar
+	if e.max_ap != 0:
 		max_value = e.max_ap
 		value = e.cur_ap
+	else:
+		max_value = 2
+		value = 1
 
 func _get_configuration_warning():
 	if !entity:
