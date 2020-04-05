@@ -56,6 +56,7 @@ script = ExtResource( 11 )
 [node name="Ally" parent="Allies" instance=ExtResource( 4 )]
 position = Vector2( 436.335, 480.762 )
 scale = Vector2( 2, 2 )
+fighting_menu = NodePath("../../UI/Menu")
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource( 11 )
@@ -97,6 +98,7 @@ script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+attack_menu = NodePath("FightMenu/AttackMenu")
 
 [node name="FightMenu" type="HBoxContainer" parent="UI/Menu"]
 anchor_bottom = 1.0
@@ -170,6 +172,7 @@ margin_right = 423.0
 margin_bottom = 262.0
 size_flags_vertical = 4
 script = ExtResource( 6 )
+attack_display = NodePath("../../AttackStats/Label")
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Menu/FightMenu/AttackMenu"]
 margin_right = 200.0
@@ -284,4 +287,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="turn_ended" from="." to="UI/Menu/FightMenu/AttackMenu" method="_on_Fight_turn_ended"]
-[connection signal="pressed" from="UI/Menu/FightMenu/Actions/AttackContainer/Attack" to="UI/Menu/FightMenu/AttackMenu" method="_on_Attack_pressed"]
+[connection signal="pressed" from="UI/Menu/FightMenu/Actions/AttackContainer/Attack" to="UI/Menu/FightMenu/AttackMenu" method="display_attacks"]
+[connection signal="mouse_entered" from="UI/Menu/FightMenu/AttackMenu/MarginContainer/Button" to="UI/Menu/FightMenu/AttackMenu" method="_on_Button_mouse_entered" binds= [ 0 ]]
+[connection signal="pressed" from="UI/Menu/FightMenu/AttackMenu/MarginContainer/Button" to="UI/Menu" method="_on_Button_pressed" binds= [ 0 ]]
+[connection signal="mouse_entered" from="UI/Menu/FightMenu/AttackMenu/MarginContainer2/Button" to="UI/Menu/FightMenu/AttackMenu" method="_on_Button_mouse_entered" binds= [ 1 ]]
+[connection signal="pressed" from="UI/Menu/FightMenu/AttackMenu/MarginContainer2/Button" to="UI/Menu" method="_on_Button_pressed" binds= [ 1 ]]
+[connection signal="mouse_entered" from="UI/Menu/FightMenu/AttackMenu/MarginContainer3/Button" to="UI/Menu/FightMenu/AttackMenu" method="_on_Button_mouse_entered" binds= [ 2 ]]
+[connection signal="pressed" from="UI/Menu/FightMenu/AttackMenu/MarginContainer3/Button" to="UI/Menu" method="_on_Button_pressed" binds= [ 2 ]]
+[connection signal="mouse_entered" from="UI/Menu/FightMenu/AttackMenu/MarginContainer4/Button" to="UI/Menu/FightMenu/AttackMenu" method="_on_Button_mouse_entered" binds= [ 3 ]]
+[connection signal="pressed" from="UI/Menu/FightMenu/AttackMenu/MarginContainer4/Button" to="UI/Menu" method="_on_Button_pressed" binds= [ 3 ]]

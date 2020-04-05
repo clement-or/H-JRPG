@@ -6,7 +6,8 @@ export var entity = "../.."
 """ MAIN METHODS """
 
 func _ready():
-	entity = get_node(entity)
+	if entity is NodePath or entity is String:
+		entity = get_node(entity)
 
 func _process(delta):
 	

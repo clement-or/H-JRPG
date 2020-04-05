@@ -1,62 +1,32 @@
 extends VBoxContainer
 
-var base_menu : Control
-var buttons : Array
-var attacks_displayed : Array
+# Reference to the Label to which display the info
+export(NodePath) var attack_display
+var attacks : Array
 
 func _ready():
-	base_menu = $"../.."
-	for b in get_children():
-		buttons.append(b.get_children()[0])
-		b.get_children()[0].connect("pressed", self, "hide_attacks", [attacks_displayed])
-	
+	attack_display = get_node(attack_display)
 
-func display(attacks : Array):
+func display_attacks():
+	if !attacks || attacks.size() == 0: return
 	
 	if visible:
-		hide_attacks(attacks)
+		visible = false
 		return
 	
-	var index = 0
-	for a in attacks:
-		buttons[index].visible = true
-		buttons[index].text = a.display_name
-		buttons[index].connect("pressed", a, "execute_attack")
-		buttons[index].connect("mouse_entered", base_menu, "display_attack_info", [a])
-		index -= -1  # Programmer joke
-		
-	attacks_displayed = attacks
+	var containers = get_children()
+	for i in range(containers.size()):
+		var c = containers[i]  # Get current container
+		var b = c.get_child(0)  # Get its button
+		b.text = attacks[i].display_name
+		b.visible = true
 	visible = true
 
-# TODO : Fix this shit
-func hide_attacks(attacks : Array):
+# On attack hover, display description
+func _on_Button_mouse_entered(index):
+	var a = attacks[index]
 	
-	var index = 0
-	for a in attacks:
-		buttons[index].text = "Attack"
-		buttons[index].disconnect("pressed", a, "execute_attack")
-		buttons[index].disconnect("mouse_entered", base_menu, "display_attack_info")
-		buttons[index].visible = false
-		index -= -1
-		
-	attacks_displayed = []
-	visible = false
-
-func _on_Attack_pressed():
-	var e = $"/root/Fight".active_entity
-	
-	# Run checks
-	if e == null: return print("No entity selected")
-	if e.attacks == null or e.attacks.size() == 0: 
-		return print("Selected entity (" + e.name + ") has no attacks")
-		
-	display(e.attacks)
-
-
-func _on_Fight_turn_ended():
-	var e = $"/root/Fight".active_entity
-	# Run checks
-	if e == null: return print("No entity selected")
-	if e.is_in_group("allies"):
-		hide_attacks(e.attacks)
-
+	if a.description && a.description != "":
+		attack_display.text = a.description
+	else:
+		attack_display.text = "No description available for that attack."

@@ -1,9 +1,10 @@
 class_name Ally
 extends Entity
 
+export(NodePath) var fighting_menu
+
 func _ready():
-	pass
+	fighting_menu = get_node(fighting_menu)
 
 func play_turn():
-	var scene = $"/root/Fight/UI/Menu".block_input(false)
-	yield(self, "attack_finished")
+	yield(fighting_menu.request_action(self), "completed")

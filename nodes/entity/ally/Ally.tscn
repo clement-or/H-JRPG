@@ -175,9 +175,7 @@ tracks/12/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 0.879, 1.067 ), Vector2( 1.05, 0.95 ), Vector2( 1, 1 ) ]
 }
 
-[node name="Ally" groups=[
-"allies",
-] instance=ExtResource( 1 )]
+[node name="Ally" instance=ExtResource( 1 )]
 script = ExtResource( 14 )
 max_ap = 100
 cur_ap = 100
@@ -284,12 +282,19 @@ position = Vector2( 29.8282, 22.8559 )
 rotation = -1.57765
 rest = Transform2D( -0.00685369, -0.999977, 0.999977, -0.00685369, 29.8282, 19.6356 )
 default_length = 20.0
+__meta__ = {
+"_edit_bone_": true,
+"_edit_ik_": true
+}
 
 [node name="Torso" type="Bone2D" parent="Skeleton2D/Hip" index="0"]
 position = Vector2( 22.0416, -1.04808 )
 rotation = 0.311239
 rest = Transform2D( 0.951955, 0.306238, -0.306238, 0.951955, 22.0416, -1.04808 )
 default_length = 41.0
+__meta__ = {
+"_edit_bone_": true
+}
 
 [node name="ArmR" type="Bone2D" parent="Skeleton2D/Hip/Torso" index="0"]
 position = Vector2( 36.2924, 19.7091 )
@@ -358,6 +363,9 @@ position = Vector2( 30.0982, 0.285704 )
 rotation = -0.0754688
 rest = Transform2D( 1, 0, 0, 1, 30.0982, 0.285704 )
 default_length = 27.0
+__meta__ = {
+"_edit_bone_": true
+}
 
 [node name="Hair" type="Bone2D" parent="Skeleton2D/Hip/Torso/Head" index="0"]
 position = Vector2( 27.2135, 0.687004 )
@@ -365,6 +373,12 @@ rotation = -2.3083
 scale = Vector2( 0.999999, 0.999999 )
 rest = Transform2D( -0.751781, -0.659412, 0.659412, -0.751781, 27.2135, 0.687004 )
 default_length = 62.0
+__meta__ = {
+"_edit_bone_": true
+}
+
+[node name="HeadEnd" type="Position2D" parent="Skeleton2D/Hip/Torso/Head" index="1"]
+position = Vector2( 27.39, 0.389197 )
 
 [node name="Boobs" type="Bone2D" parent="Skeleton2D/Hip/Torso" index="3"]
 position = Vector2( 23.464, -5.32868 )
@@ -462,7 +476,7 @@ attacker = NodePath("../..")
 
 [node name="Blowjob" type="Node" parent="Attacks" index="3"]
 script = ExtResource( 13 )
-display_name = "Blowjob"
+display_name = "Attack"
 attacker = NodePath("../..")
 
 [node name="ArousalBar" parent="EntityUI" index="0"]
@@ -472,7 +486,7 @@ margin_right = 68.0
 margin_bottom = -94.2099
 max_value = 100.0
 value = 100.0
-entity = NodePath("../..")
+entity = "../.."
 
 [node name="HoverZone" parent="." index="5"]
 margin_left = -70.0
