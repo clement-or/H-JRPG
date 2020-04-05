@@ -1,3 +1,4 @@
+class_name Attack, "res://editor/icons/attack.png"
 extends Node
 
 signal finished
@@ -16,8 +17,8 @@ export(Animation) var attack_anim
 export(Animation) var return_anim
 
 func _ready():
-	assert(attacker)
-	attacker = get_node(attacker)
+	if attacker:
+		attacker = get_node(attacker)
 
 # Handle animation and then attack execution, can be overriden for special behaviour
 func execute_attack():

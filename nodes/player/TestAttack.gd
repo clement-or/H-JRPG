@@ -4,5 +4,8 @@ func _ready():
 	pass
 
 func attack():
-	print("Hey stuff happens !")
-	print("Enemy excitation + 10%")
+	var scene = $"/root/Fight"
+	if scene:
+		var targets = $"/root/Fight/Enemies".get_children()
+		for t in targets:
+			t.set_cur_ap(10, true)

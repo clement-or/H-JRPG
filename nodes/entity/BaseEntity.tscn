@@ -1,0 +1,161 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://resources/proto_theme.tres" type="Theme" id=1]
+[ext_resource path="res://nodes/entity/EntityUI.gd" type="Script" id=2]
+[ext_resource path="res://nodes/entity/Entity.gd" type="Script" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "shake"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("./..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ), Vector2( 10, 10 ), Vector2( -10, -10 ), Vector2( 10, -10 ), Vector2( -10, 10 ), Vector2( -10, -10 ), Vector2( 10, 10 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "lose_points"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:margin_top")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -60 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "lose_points"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:margin_top")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -60 ]
+}
+
+[node name="BaseEntity" type="Node2D"]
+script = ExtResource( 3 )
+entity_ui = NodePath("ArousalBar")
+
+[node name="Attacks" type="Node" parent="."]
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+
+[node name="ArousalBar" type="ProgressBar" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -276.0
+margin_right = 276.0
+margin_bottom = 52.0
+theme = ExtResource( 1 )
+max_value = 0.0
+step = 0.1
+percent_visible = false
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+entity = NodePath("..")
+
+[node name="Tween" type="Tween" parent="ArousalBar"]
+
+[node name="Anim" type="AnimationPlayer" parent="ArousalBar"]
+anims/shake = SubResource( 1 )
+
+[node name="APLoseLabel" type="Label" parent="ArousalBar"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_bottom = 1.0
+margin_left = -347.0
+margin_right = -8.0
+margin_bottom = 2.28882e-05
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.956863, 0.564706, 1, 1 )
+text = "-150"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim" type="AnimationPlayer" parent="ArousalBar/APLoseLabel"]
+anims/lose_points = SubResource( 2 )
+
+[node name="PPLoseLabel" type="Label" parent="ArousalBar"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_bottom = 1.0
+margin_left = -361.0
+margin_right = -10.0
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.337255, 0.329412, 0.921569, 1 )
+text = "-2"
+align = 2
+
+[node name="Anim" type="AnimationPlayer" parent="ArousalBar/PPLoseLabel"]
+anims/lose_points = SubResource( 3 )

@@ -1,8 +1,10 @@
 extends VBoxContainer
 
+var base_menu : Control
 var buttons : Array
 
 func _ready():
+	base_menu = $"../.."
 	for b in get_children():
 		buttons.append(b.get_children()[0])
 	
@@ -12,6 +14,7 @@ func display(attacks : Array):
 	for a in attacks:
 		buttons[index].text = a.display_name
 		buttons[index].connect("pressed", a, "execute_attack")
+		buttons[index].connect("mouse_entered", base_menu, "display_attack_info", [a])
 		index -= -1  # Programmer joke
 	visible = true
 

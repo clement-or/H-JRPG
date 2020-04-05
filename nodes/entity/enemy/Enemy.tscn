@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://nodes/entity/BaseEntity.tscn" type="PackedScene" id=1]
+[ext_resource path="res://resources/sprites/proto-enemy.png" type="Texture" id=2]
+
+[node name="Enemy" instance=ExtResource( 1 )]
+max_ap = 100
+cur_ap = 100
+display_name = "Bad Wolf"
+
+[node name="ArousalBar" parent="." index="2"]
+margin_left = -201.0
+margin_top = -310.0
+margin_right = 202.0
+margin_bottom = -294.0
+max_value = 100.0
+value = 100.0
+
+[node name="Sprite" type="Sprite" parent="." index="3"]
+texture = ExtResource( 2 )
