@@ -1,0 +1,6 @@
+# Ignore some file types
+**/*.psd
+**/*.ai
+**/*.afdesign
+**/*.afphoto
+**/*.kra
