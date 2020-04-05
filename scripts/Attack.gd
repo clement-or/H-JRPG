@@ -1,7 +1,8 @@
 class_name Attack, "res://editor/icons/attack.png"
 extends Node
 
-signal finished
+signal pre_attack_finished
+signal attack_finished
 signal play_once_finished
 
 export(String) var display_name
@@ -22,6 +23,10 @@ func _ready():
 
 # Handle animation and then attack execution, can be overriden for special behaviour
 func execute_attack():
+	$"/root/Fight/UI/Menu".block_input(true)
+	
+	yield(pre_attack(), "completed")
+	
 	if attacker == null: return
 	var anim = attacker.anim
 	
@@ -36,11 +41,14 @@ func execute_attack():
 		yield(self, "play_once_finished")
 	
 	anim.play("idle")
-	
-	emit_signal("finished")
+	emit_signal("attack_finished")
 
 # Override this to setup attack effects
 func attack():
+	pass
+
+# This is executed before the attack (request target for example)
+func pre_attack():
 	pass
 
 # Play animation once on targeted AnimationPlayer

@@ -1,13 +1,12 @@
 tool
 extends ProgressBar
 
-export(NodePath) var entity
+export var entity = "../.."
 
 """ MAIN METHODS """
 
 func _ready():
-	if entity is NodePath:
-		entity = get_node(entity)
+	entity = get_node(entity)
 
 func _process(delta):
 	
@@ -21,7 +20,7 @@ func _process(delta):
 func editor_process(delta):
 	var e
 	# Resolve entity if it's still a NodePath
-	if typeof(entity) == TYPE_NODE_PATH:
+	if entity is String || entity is NodePath:
 		if entity == "": return
 		e = get_node(entity)
 	else:

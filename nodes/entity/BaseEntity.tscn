@@ -171,3 +171,18 @@ align = 2
 
 [node name="Anim" type="AnimationPlayer" parent="EntityUI/ArousalBar/PPLoseLabel"]
 anims/lose_points = SubResource( 3 )
+
+[node name="HoverZone" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="HoverZone" to="." method="_on_HoverZone_mouse_entered"]
+[connection signal="mouse_exited" from="HoverZone" to="." method="_on_HoverZone_mouse_exited"]

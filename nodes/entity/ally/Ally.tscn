@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://nodes/entity/BaseEntity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://resources/sprites/proto-player/leg_l.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://resources/sprites/proto-player/arm_r.png" type="Texture" id=11]
 [ext_resource path="res://resources/animations/attacks/test_attack.tres" type="Animation" id=12]
 [ext_resource path="res://nodes/player/TestAttack.gd" type="Script" id=13]
+[ext_resource path="res://nodes/entity/ally/Ally.gd" type="Script" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
@@ -174,10 +175,13 @@ tracks/12/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 0.879, 1.067 ), Vector2( 1.05, 0.95 ), Vector2( 1, 1 ) ]
 }
 
-[node name="Ally" instance=ExtResource( 1 )]
-max_ap = 15
-cur_ap = 10
-display_name = "Sexy Girl n°732"
+[node name="Ally" groups=[
+"allies",
+] instance=ExtResource( 1 )]
+script = ExtResource( 14 )
+max_ap = 100
+cur_ap = 100
+display_name = "Ally"
 
 [node name="Sprites" type="Node2D" parent="." index="0"]
 position = Vector2( -28.2769, -6.76186 )
@@ -466,7 +470,12 @@ margin_left = -67.0
 margin_top = -106.21
 margin_right = 68.0
 margin_bottom = -94.2099
-max_value = 15.0
-value = 10.0
-entity = Object(Node2D,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"visible":true,"modulate":Color( 1, 1, 1, 1 ),"self_modulate":Color( 1, 1, 1, 1 ),"show_behind_parent":false,"light_mask":1,"material":null,"use_parent_material":false,"position":Vector2( 0, 0 ),"rotation":0.0,"scale":Vector2( 1, 1 ),"z_index":0,"z_as_relative":true,"script":Resource( "res://nodes/entity/Entity.gd" ),"max_ap":15,"cur_ap":10,"max_pp":0,"cur_pp":0,"genitals":0,"gender":0,"display_name":"Sexy Girl n°732","entity_ui":NodePath("EntityUI/ArousalBar"))
+max_value = 100.0
+value = 100.0
+entity = NodePath("../..")
 
+[node name="HoverZone" parent="." index="5"]
+margin_left = -70.0
+margin_top = -74.0
+margin_right = 69.0
+margin_bottom = 111.0
