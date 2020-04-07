@@ -1,13 +1,14 @@
 tool
 extends ProgressBar
 
-export var entity = "../.."
+export(NodePath) var entity_path
+var entity
 
 """ MAIN METHODS """
 
 func _ready():
-	if entity is NodePath or entity is String:
-		entity = get_node(entity)
+	if entity_path != null && entity_path != "":
+		entity = get_node(entity_path)
 
 func _process(delta):
 	
@@ -20,12 +21,8 @@ func _process(delta):
 
 func editor_process(delta):
 	var e
-	# Resolve entity if it's still a NodePath
-	if entity is String || entity is NodePath:
-		if entity == "": return
-		e = get_node(entity)
-	else:
-		e = entity
+	if entity_path != null && entity_path != "":
+		e = get_node(entity_path)
 		
 	if e == null: return
 	
@@ -38,7 +35,7 @@ func editor_process(delta):
 		value = 1
 
 func _get_configuration_warning():
-	if !entity:
+	if !entity_path:
 		return "Entity reference not set"
 	return ""
 

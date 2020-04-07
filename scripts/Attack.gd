@@ -1,3 +1,5 @@
+tool
+
 class_name Attack, "res://editor/icons/attack.png"
 extends Node
 
@@ -7,10 +9,14 @@ signal play_once_finished
 
 export(String) var display_name
 export(String, MULTILINE) var description
+export(Array) var tags = []
+
+export(int) var max_damage setget set_max_damage
+export(int) var min_damage setget set_min_damage
+var damage setget ,get_damage
 
 export(NodePath) var attacker
 var target
-export(PoolStringArray) var tags
 
 var conditions = []
 
@@ -35,6 +41,7 @@ func execute_attack():
 		yield(self, "play_once_finished")
 	
 	attack()
+	target.take_damage(self)
 	
 	if return_anim != null:
 		play_anim_once(anim, name+"_ReturnAnim", return_anim)
@@ -67,3 +74,17 @@ func check_conditions():
 	for cond in conditions:
 		cond = cond && r_value
 	return r_value
+
+""" SETTERS / GETTERS """
+
+func set_max_damage(value):
+	if max_damage <= min_damage:
+		max_damage = min_damage
+	
+func set_min_damage(value):
+	if max_damage <= min_damage:
+		min_damage = max_damage
+
+func get_damage():
+	randomize()
+	return floor(rand_range(min_damage, max_damage+1))

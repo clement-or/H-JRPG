@@ -3,11 +3,8 @@ extends "res://scripts/Attack.gd"
 onready var Utils = $"/root/Utils"
 
 func _ready():
-	pass
-
-func attack():
-	target.set_cur_ap(target.cur_ap - 10, true)
-	print("It works ? Target = " + target.display_name)
+	max_damage = 20
+	min_damage = 10
 
 func pre_attack():
 	var scene = $"/root/Fight"

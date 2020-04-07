@@ -179,6 +179,9 @@ tracks/12/keys = {
 script = ExtResource( 14 )
 max_ap = 100
 cur_ap = 100
+fetishes = [ "furry" ]
+genitals = 1
+gender = 1
 display_name = "Ally"
 
 [node name="Sprites" type="Node2D" parent="." index="0"]
@@ -278,7 +281,7 @@ visible = false
 position = Vector2( -28.2769, -6.76186 )
 
 [node name="Hip" type="Bone2D" parent="Skeleton2D" index="0"]
-position = Vector2( 29.8282, 22.8559 )
+position = Vector2( 29.8282, 19.6356 )
 rotation = -1.57765
 rest = Transform2D( -0.00685369, -0.999977, 0.999977, -0.00685369, 29.8282, 19.6356 )
 default_length = 20.0
@@ -298,7 +301,7 @@ __meta__ = {
 
 [node name="ArmR" type="Bone2D" parent="Skeleton2D/Hip/Torso" index="0"]
 position = Vector2( 36.2924, 19.7091 )
-rotation = -4.39011
+rotation = -4.22258
 rest = Transform2D( -0.470456, 0.882424, -0.882424, -0.470456, 36.2924, 19.7091 )
 default_length = 35.0
 __meta__ = {
@@ -308,7 +311,7 @@ __meta__ = {
 
 [node name="Forearm" type="Bone2D" parent="Skeleton2D/Hip/Torso/ArmR" index="0"]
 position = Vector2( 34.7288, 0.555527 )
-rotation = 2.43185
+rotation = 2.22386
 rest = Transform2D( -0.607621, 0.794227, -0.794227, -0.607621, 34.7288, 0.555527 )
 default_length = 35.0
 __meta__ = {
@@ -329,7 +332,7 @@ position = Vector2( 22.8476, -0.165487 )
 
 [node name="ArmL" type="Bone2D" parent="Skeleton2D/Hip/Torso" index="1"]
 position = Vector2( 33.4842, -16.8078 )
-rotation = -3.2004
+rotation = -3.0837
 rest = Transform2D( -0.998325, -0.057853, 0.057853, -0.998325, 33.4842, -16.8078 )
 default_length = 27.0
 __meta__ = {
@@ -360,7 +363,6 @@ position = Vector2( 19.8412, -0.0479994 )
 
 [node name="Head" type="Bone2D" parent="Skeleton2D/Hip/Torso" index="2"]
 position = Vector2( 30.0982, 0.285704 )
-rotation = -0.0754688
 rest = Transform2D( 1, 0, 0, 1, 30.0982, 0.285704 )
 default_length = 27.0
 __meta__ = {
@@ -369,7 +371,7 @@ __meta__ = {
 
 [node name="Hair" type="Bone2D" parent="Skeleton2D/Hip/Torso/Head" index="0"]
 position = Vector2( 27.2135, 0.687004 )
-rotation = -2.3083
+rotation = -2.42156
 scale = Vector2( 0.999999, 0.999999 )
 rest = Transform2D( -0.751781, -0.659412, 0.659412, -0.751781, 27.2135, 0.687004 )
 default_length = 62.0
@@ -383,13 +385,12 @@ position = Vector2( 27.39, 0.389197 )
 [node name="Boobs" type="Bone2D" parent="Skeleton2D/Hip/Torso" index="3"]
 position = Vector2( 23.464, -5.32868 )
 rotation = -3.00497
-scale = Vector2( 1.01793, 0.97194 )
 rest = Transform2D( -0.990681, -0.136201, 0.136201, -0.990681, 23.464, -5.32868 )
 default_length = 23.0
 
 [node name="LegR" type="Bone2D" parent="Skeleton2D/Hip" index="1"]
 position = Vector2( 8.96843, 18.6404 )
-rotation = -2.61447
+rotation = -2.69372
 rest = Transform2D( -0.901374, -0.433042, 0.433042, -0.901374, 8.96843, 18.6404 )
 default_length = 23.0
 __meta__ = {
@@ -399,7 +400,6 @@ __meta__ = {
 
 [node name="ForelegR" type="Bone2D" parent="Skeleton2D/Hip/LegR" index="0"]
 position = Vector2( 34.4127, -29.8522 )
-rotation = -0.1919
 rest = Transform2D( 1, 0, 0, 1, 34.4127, -29.8522 )
 default_length = 23.0
 __meta__ = {
@@ -408,7 +408,7 @@ __meta__ = {
 
 [node name="FootR" type="Bone2D" parent="Skeleton2D/Hip/LegR/ForelegR" index="0"]
 position = Vector2( 16.0423, -47.41 )
-rotation = -0.423693
+rotation = -0.535952
 rest = Transform2D( 0.86, -0.511, 0.511, 0.86, 16.253, -47.41 )
 default_length = 23.0
 __meta__ = {
@@ -420,7 +420,7 @@ position = Vector2( 22.945, -0.0118599 )
 
 [node name="LegL" type="Bone2D" parent="Skeleton2D/Hip" index="2"]
 position = Vector2( 14.1448, -16.311 )
-rotation = -2.75778
+rotation = -2.69372
 rest = Transform2D( -0.901374, -0.433042, 0.433042, -0.901374, 14.1448, -16.311 )
 default_length = 23.0
 __meta__ = {
@@ -430,7 +430,6 @@ __meta__ = {
 
 [node name="ForelegL" type="Bone2D" parent="Skeleton2D/Hip/LegL" index="0"]
 position = Vector2( 52.3248, -11.012 )
-rotation = 0.163452
 rest = Transform2D( 1, 0, 0, 1, 52.3248, -11.012 )
 default_length = 23.0
 __meta__ = {
@@ -439,7 +438,7 @@ __meta__ = {
 
 [node name="FootL" type="Bone2D" parent="Skeleton2D/Hip/LegL/ForelegL" index="0"]
 position = Vector2( 37.3806, 19.4188 )
-rotation = -0.602678
+rotation = -0.535952
 rest = Transform2D( 0.859783, -0.51066, 0.51066, 0.859783, 37.3806, 19.4188 )
 default_length = 30.0
 __meta__ = {
@@ -461,6 +460,8 @@ description = "Make your boobs bounce to turn on your enemies !
 - Target : Every opponent
 - Effects : AP+10%
 - Works only once"
+max_damage = 20
+min_damage = 10
 attacker = NodePath("../..")
 attack_anim = ExtResource( 12 )
 
@@ -486,7 +487,6 @@ margin_right = 68.0
 margin_bottom = -94.2099
 max_value = 100.0
 value = 100.0
-entity = "../.."
 
 [node name="HoverZone" parent="." index="5"]
 margin_left = -70.0

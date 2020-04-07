@@ -134,8 +134,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-entity = Object(Node2D,"_import_path":NodePath(""),"pause_mode":0,"process_priority":0,"visible":true,"modulate":Color( 1, 1, 1, 1 ),"self_modulate":Color( 1, 1, 1, 1 ),"show_behind_parent":false,"light_mask":1,"material":null,"use_parent_material":false,"position":Vector2( 0, 0 ),"rotation":0.0,"scale":Vector2( 1, 1 ),"z_index":0,"z_as_relative":true,"script":ExtResource( 3 ),"max_ap":0,"cur_ap":0,"max_pp":0,"cur_pp":0,"genitals":0,"gender":0,"display_name":"","entity_ui":NodePath("EntityUI/ArousalBar"))
-
+entity_path = NodePath("../..")
 
 [node name="Tween" type="Tween" parent="EntityUI/ArousalBar"]
 

@@ -11,6 +11,7 @@ signal mouse_exited
 """ Constants """
 enum GENITALS { P, V, N }
 enum GENDERS { M, F, O }
+enum SEX_PREFERENCE {M, F, N, ANY}
 
 """ Arousal points (HP) """
 export var max_ap : int
@@ -20,9 +21,15 @@ export var cur_ap : int setget set_cur_ap
 export var max_pp : int
 export var cur_pp : int
 
+export(int) var sex_resistance = 0 # percents
+
 """ Exports """
+export(Array) var tags = []
+export(Array) var fetishes = []
+export(Array) var turns_off = []
 export(GENITALS) var genitals
 export(GENDERS) var gender
+export(SEX_PREFERENCE) var sexual_preference
 export(String) var display_name
 
 """ Exported Node references """
@@ -82,6 +89,33 @@ func set_cur_pp(value, play_anim=false):
 	else:
 		cur_pp = value
 
+# Calculate damages taken
+func take_damage(attack : Attack):
+	var attacker = attack.attacker
+	var base_dmg = attack.damage
+	
+	base_dmg -= base_dmg * floor(sex_resistance / 100) # Remove resistance
+	
+	# Check sexual preference
+	if sexual_preference != SEX_PREFERENCE.ANY:
+		if attacker.gender == GENDERS.M or attacker.gender == GENDERS.F:
+			base_dmg -= base_dmg * .5 * int(attacker.gender == sexual_preference)
+		elif sexual_preference == SEX_PREFERENCE.N:
+			base_dmg *= .5
+	
+	# Check fetishes and turn offs
+	for tag in attack.tags:
+		if fetishes.has(tag): base_dmg *= 1.1
+		if turns_off.has(tag): base_dmg *= .9
+	for tag in attacker.tags:
+		if fetishes.has(tag): base_dmg *= 1.1
+		if turns_off.has(tag): base_dmg *= .9
+	#for obj in attacker.equipment:
+	#	for tag in obj.tags:
+	#		if fetishes.has(tag): base_dmg *= 1.1
+	#		if turns_off.has(tag): base_dmg *= .9
+	
+	set_cur_ap(cur_ap - base_dmg, true)
 
 """ CUSTOM SIGNALS METHODS """
 

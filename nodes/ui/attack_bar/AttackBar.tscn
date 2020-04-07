@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://nodes/ui/panel.png" type="Texture" id=1]
+[ext_resource path="res://nodes/ui/attack_bar/AttackBar.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32.95, 147.15 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 12.0099, 147.15 )
+
+[node name="AttackBar" type="NinePatchRect"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -331.0
+texture = ExtResource( 1 )
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AimZoneLeft" type="Area2D" parent="."]
+position = Vector2( 355.477, 165 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AimZoneLeft"]
+shape = SubResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="AimZoneLeft"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -34.0
+margin_top = -144.0
+margin_right = 34.0
+margin_bottom = 146.0
+color = Color( 0.705882, 0.705882, 0.705882, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AimZoneRight" type="Area2D" parent="."]
+position = Vector2( 1278.92, 165 )
+
+[node name="ColorRect2" type="ColorRect" parent="AimZoneRight"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -34.0
+margin_top = -145.0
+margin_right = 34.0
+margin_bottom = 145.0
+color = Color( 0.705882, 0.705882, 0.705882, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AimZoneRight"]
+shape = SubResource( 1 )
+
+[node name="Cursor" type="Area2D" parent="."]
+position = Vector2( 1890.09, 165 )
+
+[node name="ColorRect3" type="ColorRect" parent="Cursor"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -145.0
+margin_right = 12.0
+margin_bottom = 145.0
+color = Color( 0.0862745, 0.0862745, 0.0862745, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor"]
+shape = SubResource( 2 )
