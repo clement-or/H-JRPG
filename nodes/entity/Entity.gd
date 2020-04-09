@@ -2,7 +2,7 @@ class_name Entity
 extends Node2D
 
 signal attack_finished
-signal turn_ended
+signal has_died
 
 """ Signals """
 signal mouse_entered
@@ -116,6 +116,15 @@ func take_damage(attack : Attack):
 	#		if turns_off.has(tag): base_dmg *= .9
 	
 	set_cur_ap(cur_ap - base_dmg, true)
+	if cur_ap <= 0:
+		die()
+
+func die():
+	if anim.get_animation("die"):
+		anim.play("die")
+		yield(anim, "animation_finished")
+	emit_signal("has_died", self)
+	
 
 """ CUSTOM SIGNALS METHODS """
 

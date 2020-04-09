@@ -53,8 +53,13 @@ __meta__ = {
 [node name="Allies" type="Node2D" parent="."]
 script = ExtResource( 11 )
 
+[node name="Ally2" parent="Allies" instance=ExtResource( 4 )]
+position = Vector2( 496.901, 615.394 )
+scale = Vector2( 2, 2 )
+fighting_menu = NodePath("../../UI/Menu")
+
 [node name="Ally" parent="Allies" instance=ExtResource( 4 )]
-position = Vector2( 436.335, 480.762 )
+position = Vector2( 700.958, 618.115 )
 scale = Vector2( 2, 2 )
 fighting_menu = NodePath("../../UI/Menu")
 
@@ -62,11 +67,11 @@ fighting_menu = NodePath("../../UI/Menu")
 script = ExtResource( 11 )
 
 [node name="Enemy" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 1485.64, 448.343 )
+position = Vector2( 1363.43, 568.87 )
 scale = Vector2( 1.3, 1.3 )
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource( 3 )]
-position = Vector2( 1055.52, 553.564 )
+position = Vector2( 1161.67, 567.278 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -286,7 +291,41 @@ mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AlliesPos" type="Node2D" parent="."]
+script = ExtResource( 11 )
+
+[node name="Pos1" type="Position2D" parent="AlliesPos"]
+position = Vector2( 150, 700 )
+
+[node name="Pos2" type="Position2D" parent="AlliesPos"]
+position = Vector2( 350, 700 )
+
+[node name="Pos3" type="Position2D" parent="AlliesPos"]
+position = Vector2( 550, 700 )
+
+[node name="Pos4" type="Position2D" parent="AlliesPos"]
+position = Vector2( 750, 700 )
+
+[node name="EnemiesPos" type="Node2D" parent="."]
+script = ExtResource( 11 )
+
+[node name="Pos4" type="Position2D" parent="EnemiesPos"]
+position = Vector2( 1750, 700 )
+
+[node name="Pos3" type="Position2D" parent="EnemiesPos"]
+position = Vector2( 1550, 700 )
+
+[node name="Pos2" type="Position2D" parent="EnemiesPos"]
+position = Vector2( 1350, 700 )
+
+[node name="Pos1" type="Position2D" parent="EnemiesPos"]
+position = Vector2( 1150, 700 )
 [connection signal="turn_ended" from="." to="UI/Menu/FightMenu/AttackMenu" method="_on_Fight_turn_ended"]
+[connection signal="has_died" from="Allies/Ally2" to="." method="_on_Entity_has_died"]
+[connection signal="has_died" from="Allies/Ally" to="." method="_on_Entity_has_died"]
+[connection signal="has_died" from="Enemies/Enemy" to="." method="_on_Entity_has_died"]
+[connection signal="has_died" from="Enemies/Enemy2" to="." method="_on_Entity_has_died"]
 [connection signal="pressed" from="UI/Menu/FightMenu/Actions/AttackContainer/Attack" to="UI/Menu/FightMenu/AttackMenu" method="display_attacks"]
 [connection signal="mouse_entered" from="UI/Menu/FightMenu/AttackMenu/MarginContainer/Button" to="UI/Menu/FightMenu/AttackMenu" method="_on_Button_mouse_entered" binds= [ 0 ]]
 [connection signal="pressed" from="UI/Menu/FightMenu/AttackMenu/MarginContainer/Button" to="UI/Menu" method="_on_Button_pressed" binds= [ 0 ]]

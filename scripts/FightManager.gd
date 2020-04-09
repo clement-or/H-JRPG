@@ -10,6 +10,17 @@ var turn_order
 var active_entity : Entity setget set_active_entity
 
 func _ready():
+	# Correctly position allies and enemies
+	var i = 0
+	for ally in allies:
+		ally.global_position = $AlliesPos.get_child(3-i).global_position
+		i += 1
+		
+	i = 0
+	for enemy in enemies:
+		enemy.global_position = $EnemiesPos.get_child(i+enemies.size()).global_position
+		i += 1
+	
 	# Shuffle the turn order, for now it is random
 	randomize()
 	enemies.shuffle()
@@ -24,9 +35,6 @@ func _ready():
 	yield(get_tree(), "idle_frame")
 	next_turn()
 
-func _process(delta):
-	pass
-
 func next_turn():
 	print(active_entity.display_name + "'s turn !")
 	
@@ -40,6 +48,28 @@ func next_turn():
 	yield(get_tree().create_timer(1), "timeout")
 	next_turn()
 
+func victory():
+	pass
+
+func defeat():
+	pass
+
 func set_active_entity(e : Entity):
 	active_entity = e
 	$UI/Arrow.global_position.x = active_entity.global_position.x
+
+
+func _on_Entity_has_died(entity):
+	turn_order.erase(entity)
+	entity.queue_free()
+	yield(entity, "tree_exited")
+	
+	allies = $Allies.get_children()
+	enemies = $Enemies.get_children()
+	
+	if !enemies.size():
+		victory()
+		return
+	if !allies.size():
+		defeat()
+		return

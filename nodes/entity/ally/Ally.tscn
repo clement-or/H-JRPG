@@ -185,7 +185,7 @@ gender = 1
 display_name = "Ally"
 
 [node name="Sprites" type="Node2D" parent="." index="0"]
-position = Vector2( -28.2769, -6.76186 )
+position = Vector2( -28.2769, -118.206 )
 scale = Vector2( 0.1, 0.1 )
 
 [node name="Hair" type="Polygon2D" parent="Sprites" index="0"]
@@ -278,7 +278,7 @@ __meta__ = {
 
 [node name="Skeleton2D" type="Skeleton2D" parent="." index="1"]
 visible = false
-position = Vector2( -28.2769, -6.76186 )
+position = Vector2( -28.2769, -128.424 )
 
 [node name="Hip" type="Bone2D" parent="Skeleton2D" index="0"]
 position = Vector2( 29.8282, 19.6356 )
@@ -481,15 +481,15 @@ display_name = "Attack"
 attacker = NodePath("../..")
 
 [node name="ArousalBar" parent="EntityUI" index="0"]
-margin_left = -67.0
-margin_top = -106.21
-margin_right = 68.0
-margin_bottom = -94.2099
+margin_left = -33.0
+margin_top = -216.0
+margin_right = 35.0
+margin_bottom = -209.0
 max_value = 100.0
 value = 100.0
 
 [node name="HoverZone" parent="." index="5"]
 margin_left = -70.0
-margin_top = -74.0
+margin_top = -185.444
 margin_right = 69.0
-margin_bottom = 111.0
+margin_bottom = -0.443909

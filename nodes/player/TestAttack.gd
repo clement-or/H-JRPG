@@ -3,8 +3,8 @@ extends "res://scripts/Attack.gd"
 onready var Utils = $"/root/Utils"
 
 func _ready():
-	max_damage = 20
-	min_damage = 10
+	max_damage = 200
+	min_damage = 100
 
 func pre_attack():
 	var scene = $"/root/Fight"
