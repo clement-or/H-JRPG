@@ -1,0 +1,20 @@
+{
+  "dialogue": [
+	{"characters": ["Polly", "Polly2"]},
+    {"character": "Polly", "mood": "neutral", "text": "Hey I'm Polly"},
+    {"character": "Polly2", "mood": "happy", "text": "Wow I'm Polly too !"},
+    {"character": "Polly3", "mood": "happy", "text": "What ? You guys are Pollys ?"},
+    {"character": "Polly4", "mood": "happy", "text": "Hey, I'm a Polly as well !"},
+    {"character": "Polly5", "mood": "happy", "text": "Yowsa"},
+    {"character": "Polly6", "mood": "happy", "text": "Polly Party !!!"},
+    {"character": "Polly", "mood": "angry", "text": "OMG too many Pollys, get out already !"},
+    {"character": "Polly2", "mood": "sad", "text": "Chill we are just Pollys"},
+    {"character": "Polly3", "mood": "sad", "text": "Yeah chill out"},
+    {"character": "Polly4", "mood": "happy", "text": "Let's party !"},
+    {"character": "Polly", "mood": "angry", "text": "No no no ! Get out !"},
+	{"characters": ["Polly"]},
+    {"character": "Polly", "mood": "angry", "text": "Grrrrrrr"},
+    {"character": "Polly", "mood": "angry", "text": "They were getting on my nerves"},
+    {"character": "Polly", "mood": "neutral", "text": "Anyways"}
+  ]
+}

@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://nodes/dialogue/character/Character.gd" type="Script" id=1]
+[ext_resource path="res://resources/portraits/test/polly_neutral.png" type="Texture" id=2]
+[ext_resource path="res://resources/portraits/test/polly_angry.png" type="Texture" id=3]
+[ext_resource path="res://resources/portraits/test/polly_sad.png" type="Texture" id=4]
+[ext_resource path="res://resources/portraits/test/polly_happy.png" type="Texture" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "talk"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.482968, 1 ),
+"update": 0,
+"values": [ Color( 0.627451, 0.627451, 0.627451, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureRect:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ) ]
+}
+
+[node name="Character" type="Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 540 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+neutral_sprite = ExtResource( 2 )
+happy_sprite = ExtResource( 5 )
+angry_sprite = ExtResource( 3 )
+sad_sprite = ExtResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color( 0.627451, 0.627451, 0.627451, 1 )
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -283.5
+margin_right = 283.5
+rect_pivot_offset = Vector2( 283.5, 540 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/talk = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="SpaceTween" type="Tween" parent="."]
