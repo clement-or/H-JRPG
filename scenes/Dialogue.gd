@@ -6,10 +6,13 @@ export var time_per_char = 0.02
 
 onready var text = $UI/Control/Panel/Text
 onready var characters = $UI/Control/Characters
+onready var choices_buttons = $UI/Control/Panel/ChoicePanel/VBoxContainer
 
 var dialogue = []
 var cur_line : Dictionary
 var in_scene_characters = []
+
+var cur_choice = []
 
 """ Base Methods """
 
@@ -22,6 +25,7 @@ func _ready():
 	check_place_characters()
 
 func _input(event):
+	if cur_choice: return
 	if event.is_action_pressed("next_dialogue"):
 		# If the text hasn't been fully displayed, speed up
 		if $TextTween.is_active():
@@ -29,19 +33,58 @@ func _input(event):
 			text.text = cur_line.text
 			text.percent_visible = 1
 		else:
-			display_next_dialogue()
+			next_line()
+
+
+func next_line():
+	if dialogue.size() == 0: return print("Dialogue finished")
+	
+	# If next line is a choice
+	if dialogue[0].get("choices"):
+		display_choices()
+		return
+	
+	# If next line is a rearrangement
+	check_place_characters()
+	
+	# Display next dialogue
+	display_next_dialogue()
+
+""" Choices """
+
+func display_choices():
+	cur_choice = dialogue.pop_front().choices
+	var i = 0
+	for choice in cur_choice:
+		var label = choices_buttons.get_child(i).get_node("Button/RichTextLabel")
+		label.bbcode_text = "[center]"+choice.text+"[/center]" 
+		i += 1
+	$UI/Control/Panel/ChoicePanel.visible = true
+	$UI/Control/Panel/ChoicePanel.mouse_filter = Control.MOUSE_FILTER_STOP
+
+func execute_choice(index : int):
+	dialogue = cur_choice[1].result + dialogue
+	cur_choice = []
+	$UI/Control/Panel/ChoicePanel.visible = false
+	$UI/Control/Panel/ChoicePanel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	display_next_dialogue()
+
+func choice_0():
+	execute_choice(0)
+
+func choice_1():
+	execute_choice(1)
 
 """ Helpers """
 
 
 # Check if the current line asks to rearrange the characters
 func check_place_characters():
-	if dialogue.size() == 0: return print("End of dialogue")
-	
-	while dialogue[0].get("characters"):
+	if dialogue[0].get("characters"):
 		var characters = dialogue.pop_front().characters
 		characters = get_characters_by_name(characters)
 		place_characters(characters)
+		next_line()
 
 
 # Reset the scene by placing only selected characters in array

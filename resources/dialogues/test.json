@@ -11,10 +11,20 @@
     {"character": "Polly2", "mood": "sad", "text": "Chill we are just Pollys"},
     {"character": "Polly3", "mood": "sad", "text": "Yeah chill out"},
     {"character": "Polly4", "mood": "happy", "text": "Let's party !"},
-    {"character": "Polly", "mood": "angry", "text": "No no no ! Get out !"},
-	{"characters": ["Polly"]},
-    {"character": "Polly", "mood": "angry", "text": "Grrrrrrr"},
-    {"character": "Polly", "mood": "angry", "text": "They were getting on my nerves"},
-    {"character": "Polly", "mood": "neutral", "text": "Anyways"}
+	{"choices": [
+		{"text": "Make them leave", "result": [
+			{"character": "Polly", "mood": "angry", "text": "No no no ! Get out !"},
+			{"characters": ["Polly"]},
+			{"character": "Polly", "mood": "angry", "text": "Grrrrrrr"},
+			{"character": "Polly", "mood": "angry", "text": "They were getting on my nerves"}
+		]},
+		{"text": "Make them stay", "result": [
+			{"character": "Polly", "mood": "happy", "text": "Ok you can stay friends"},
+			{"character": "Polly2", "mood": "sad", "text": "No, now we want to leave"},
+			{"character": "Polly", "mood": "neutral", "text": "Okay"},
+			{"characters": ["Polly"]}
+		]}
+	]},
+	{"character": "Polly", "mood": "neutral", "text": "Anyways, let's continue the dialogue !"}
   ]
 }
